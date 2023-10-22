@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="icon" href="icon.png">
+    <style>
+        
+        #bp{
+            border-radius: 45px;
+        }
+        .el-header, .el-footer {
+            color: rgb(255, 255, 255);
+            text-align: center;
+            line-height: 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        }
+        
+        .el-aside {
+            color: black;
+            text-align: center;
+            line-height: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        }
+        .el-main {
+            color: #333;
+            text-align: center;
+            line-height: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        }
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+        .star{
+            font-size:60px;
+            background: linear-gradient(to top, #03F1D5,#7f83dc, #FFBAF2 );
+            background: -webkit-linear-gradient(to top, #03F1D5, #8AC0F9, #FFBAF2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .starText{
+            opacity: 0;
+        }
+        .starTextInTen{
+            opacity: 0;
+        }
+        .cardName{
+            color:white;
+            font-size:60px;
+            opacity: 0;
+        }
+        .cardNameInTen{
+            color:white;
+            font-size:60px;
+            opacity: 0;
+        }
+        .archive{
+            margin-top: -180px;
+            font-size: 110px;
+            opacity: 0;
+        }
+        .archiveInTen{
+            margin-top: -200px;
+            font-size: 110px;
+            opacity: 0;
+        }
+        .Ilu{
+            opacity: 0;
+        }
+        .IluInTen{
+            position: absolute;
+            opacity: 0;
+        }
+        .cardbg{
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: #fbe4a9;
+            height:720px;
+        }
+    </style>
+    <title>Imoto Website</title>
+</head>
+<body>
+    <div class="rwd_slider_container_wrapper">
+        <div class="rwd_slider_container">    
+            <div class="slider_container">
+                <div><img src="yuru_camp_title_pic-removebg-preview.png" style="width: 60%;margin: auto;display: block;margin-top: 20px;"></div>
+                <div><img src="Bocchi_the_Rock!_Black_logo.png" style="width: 50%;margin: auto;display: block;margin-top: 20px;"></div>
+                <div><img src="zz_logo.png" style="width: 40%;margin: auto;display: block;margin-top: 20px;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="menu">
+        <ul class="drop-down-menu">
+            <li><a href="#">角色介紹 ▼</a>
+                <ul>
+                    <li><a href="char.html">搖曳露營</a></li>
+                    <li><a href="char_zz.html">咒術迴戰</a></li>
+                    <li><a href="char_bochi.html">孤獨搖滾</a></li>
+                </ul>
+            </li>
+            <li><a href="video.html">影音觀賞</a></li>
+            <li><a href="#">圖片分享 ▼</a>
+                <ul>
+                    <li><a href="pic.html">搖曳露營</a></li>
+                    <li><a href="pic_zz.html">咒術迴戰</a></li>
+                    <li><a href="pic_bochi.html">孤獨搖滾</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="card.html">抽卡系統</a>
+            </li>
+        </ul>
+        <ul class="drop-down-menu" style="padding-left:680px;">
+            <li><a href="index.html">回到首頁</a></li>
+        </ul>
+        <p>
+            <a href="/webdesign">角色介紹</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/course">影音觀賞</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/lesson07">圖片分享</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/lesson07">回到首頁</a>
+        </p>
+    </div>
+    <div id="app">
+        <el-main>
+            <template>
+                <el-tabs v-model="activeName" stretch>
+                  <el-tab-pane label="單抽" name="first">
+                    <div class="cardbg">
+                        <img class="Ilu" :src="cardpool[4-starsNow][CardIndex].src">
+                        <div class="archive"><i class="el-icon-document"></i></div>
+                        <p class='starText'><i v-for="i in starsNow" class="el-icon-star-on star"></i></p>
+                        <p class='cardName'>Takanashi Hoshino</p>
+                    </div>
+                    <el-button style="margin-top: 30px;" @click="GetOneCard(); visible = true">抽</el-button>
+                  </el-tab-pane>
+                  <el-tab-pane label="十抽" name="second">
+                    <div class="cardbg">
+                        <img class="IluInTen" :src="cardpool[4-starsNow][CardIndex].src">
+                        <el-container style="margin-left: 695px;padding-top: 270px;">
+                            <p id="archive0"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive1"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive2"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive3"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive4"><i class="el-icon-document archiveInTen"></i></p>
+                        </el-container>
+                        <el-container style="margin-left: 695px;margin-top: 130px;">
+                            <p id="archive5"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive6"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive7"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive8"><i class="el-icon-document archiveInTen"></i></p>
+                            <p id="archive9"><i class="el-icon-document archiveInTen"></i></p>
+                        </el-container>
+                        
+                        <p class='starTextInTen'><i v-for="i in starsNow" class="el-icon-star-on star"></i></p>
+                        <p class='cardNameInTen'>Takanashi Hoshino</p>
+                    </div>
+                    <el-button style="margin-top: 30px;" @click="GetTenCard() ; visible = true">十連抽</el-button>
+                  </el-tab-pane>
+                </el-tabs>
+              </template>
+            
+        </el-main>
+    </div>
+</body>
+    <!-- Vue  -->
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <!-- element-ui -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    activeName: 'first',
+                    visible: false,
+                    //disabled:false,
+                    card: 100,
+                    TenCard: [100,100,100,100,100,100,100,100,100,100],
+                    tableData: [{
+                        rarity: '四星',
+                        probability: 3,
+                    }, {
+                        rarity: '三星',
+                        probability: 8.5,
+                    }, {
+                        rarity: '二星',
+                        probability: 88.5,
+                    }],
+                    cardpool:[
+                        [{src:'Star4/RIN_card.gif'},{src:'Star4/gojo4.gif'},{src:'Star4/bocchi.gif'}],                 // 4 stars
+                        [{src:'Star3/nadeshiko3.gif'},{src:'Star3/geto_suguru3.gif'},{src:'Star3/ryou3.gif'},{src:'Star3/touji3.gif'}],                 // 3 stars
+                        [{src:'Star2/aoi2.gif'},{src:'Star2/chiaki2.gif'},{src:'Star2/ikuyo2.gif'},{src:'Star2/itatori2.gif'},{src:'Star2/megumi2.gif'},{src:'Star2/nijika2.gif'},{src:'Star2/nobara2.gif'},{src:'Star2/saitou2.gif'}],                 // 2 stars
+                    ],
+                    starsNow:2,
+                    CardIndex:0,
+                    
+                }
+            },
+            methods: {
+                createRandom() {  
+                    return Math.floor(Math.random() * 1000 + 1);
+                },
+                judgeRarity(odds){
+                    if (odds >=(1000-this.tableData[0].probability*10))
+                        return 4;
+                    else if (odds >=1000-this.tableData[1].probability*10)
+                        return 3;
+                    else
+                        return 2;
+                },
+                judgeWhichCard(stars){
+                    let arrlen =  this.cardpool[4-stars].length;
+                    this.CardIndex = Math.floor(Math.random() * arrlen);
+                },
+                GetOneCard(){
+                    this.card = this.createRandom();
+                    this.starsNow = this.judgeRarity(this.card);
+                    this.judgeWhichCard(this.starsNow);
+                    console.log("Stars: ",this.starsNow,"\n");
+                    console.log("CardIndex: ",this.CardIndex,"\n");
+                    let tl = gsap.timeline();
+                    //clear animation
+                    tl.set(".Ilu",{opacity:0});
+                    tl.set(".starText",{opacity: 0});
+                    tl.set(".cardName",{opacity: 0});
+                    //create animation
+                    tl.set('.archive',{opacity:1});
+                    tl.from(".archive",{x:-500,rotation:360,duration:0.3});
+                    tl.to(".archive",{keyframes: [{ x: 2 },{ x: -2 },{ x: 4 },{ x: -4 },{ x: 6 },{ x: -6 },{ x: 8 },{ x: -8 }],duration:0.3,repeat:2});
+                    tl.to(".archive",{opacity:0});
+                    tl.fromTo(".Ilu",{y:120,opacity:0,scale:0},{opacity:1,scale:1.4});
+                    //tl.fromTo(".starText",{x:-1000,y:-405,opacity:0},{x:330,y:-405,opacity: 1,duration:0.5});
+                    //tl.fromTo(".cardName",{x:1000,y:100,opacity:0},{x:-155,y:100,opacity: 1,duration:0.2});
+                    //tl.to(".cardName",{keyframes: [{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" }],duration:0.3});
+                    //break
+                },
+                GetTenCard(){
+                    //this.disableBtn();
+                    let newArr = [];
+                    for(let i=0;i<10;i++)
+                        newArr.push(this.createRandom());
+                    console.log(newArr);
+                    this.TenCard = newArr;
+
+                    let tl = gsap.timeline();
+                    //10 cards enter animation
+                    for(let i=0;i<10;i++){
+                        tl.set(`.archiveInTen`,{opacity:1});
+                        tl.from(`#archive${i}`,{x:-5000,rotation:360,duration:0.3});
+                    }
+                    //show card animation
+                    for(let i=0;i<10;i++){
+                        //caculate stars and select card 
+                        this.starsNow = this.judgeRarity(this.TenCard[i]);
+                        this.judgeWhichCard(this.starsNow);
+                        console.log("Stars: ",this.starsNow,"\n");
+                        console.log("CardIndex: ",this.CardIndex,"\n");
+                        //choose card animation
+                        tl.to(`#archive${i}`,{keyframes: [{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" }],duration:0.3});
+                        if(i&1)
+                            tl.to(`#archive${i}`,{y:1000});
+                        else
+                            tl.to(`#archive${i}`,{y:-1000});
+                        tl.set('.archiveInTen',{opacity:0});
+                        tl.fromTo(".IluInTen",{x:-400 , y:130,opacity:0,scale:0},{opacity:1,scale:1.4,duration:0.5});
+                        //tl.fromTo(".starTextInTen",{x:-1000,y:-450,opacity:0},{x:300,y:-450,opacity: 1,duration:0.5});
+                        //tl.fromTo(".cardNameInTen",{x:1000,y:50,opacity:0},{x:-135,y:50,opacity: 1,duration:0.2});
+                        //tl.to(".cardNameInTen",{keyframes: [{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" }],duration:0.3});
+                        //tl.to(".IluInTen",{duration:2});
+                        //clear animation
+                        tl.set(".IluInTen",{delay:2});
+                        tl.set(".IluInTen",{opacity:0});
+                        tl.set('.archiveInTen',{opacity:1});
+                        //tl.set(".starTextInTen",{opacity: 0});
+                        //tl.set(".cardNameInTen",{opacity: 0});
+                        this.disabled=false;
+                    }
+                },
+                //disableBtn(){
+                //    this.disabled=true;
+                //},
+            },
+            
+            //mounted(){
+            //    this.disableBtn();
+            //}
+        });
+    </script>
+</html>

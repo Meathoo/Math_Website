@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+    <style>
+        #bp {
+            border-radius: 45px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid rgb(110, 224, 253);
+        }
+        th, td {
+            text-align: center;
+            padding: 5px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        img {
+            max-width: 100%;
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .navbar {
+            font-size: 15px;
+        }
+
+        .navbar-inverse .navbar-brand {
+            font-weight: 600;
+            font-size: 24px;
+            color: #F5F5F5;
+            text-transform: uppercase;
+            font-style: cursive;
+        }
+
+        h1 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+            font-size: 3.0em;
+            padding-bottom: 20px;
+        }
+        /*
+        .header-section {
+            background-image: url("b2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-color: #45484B;
+            height: 100vh;
+            width: 100%;
+        }
+        */
+        .header-section h1 {
+            font-size: 5.5rem;
+        }
+
+        .intro-text {
+            padding-top: 150px;
+            color: #ffffff;
+        }
+
+        .intro-text p {
+            font-size: 22px;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .profile-pic {
+            margin: 20px auto;
+            width: 250px;
+        }
+
+        .profile-pic img {
+            border-radius: 100%;
+            border: 3px solid grey;
+            margin-bottom: 40px;
+        }
+
+        .profile-pic img:hover {
+            border-radius: 3px;
+        }
+
+        .social-icons {
+            display: inline;
+            margin: 40px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-align: center;
+            padding-right: 10px;
+            border: 2px solid #fff;
+            width: 50px;
+            font-size: 22px;
+            text-align: center;
+            padding: 15px;
+            border-radius: 100%;
+        }
+
+        .social-icons a:hover {
+            color: #000;
+            background-color: #fff;
+        }
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("b2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-color: #45484B;
+            height: 100vh;
+            width: 100%;
+        }
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        #dynamic-text {
+            animation: blink 2s infinite;
+        }
+
+    </style>
+
+    <title>Imoto Website</title>
+</head>
+<body>
+    <div>
+        <div class="rwd_slider_container_wrapper">
+            <div class="rwd_slider_container">
+                <div class="slider_container">
+                    <div><img src="yuru_camp_title_pic-removebg-preview.png" style="width: 60%; margin: auto; display: block; margin-top: 20px;"></div>
+                    <div><img src="Bocchi_the_Rock!_Black_logo.png" style="width: 50%; margin: auto; display: block; margin-top: 20px;"></div>
+                    <div><img src="zz_logo.png" style="width: 40%; margin: auto; display: block; margin-top: 20px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu">
+        <ul class="drop-down-menu">
+            <li><a href="#">角色介紹 ▼</a>
+                <ul>
+                    <li><a href="char.html">搖曳露營</a></li>
+                    <li><a href="char_zz.html">咒術迴戰</a></li>
+                    <li><a href="char_bochi.html">孤獨搖滾</a></li>
+                </ul>
+            </li>
+            <li><a href="video.html">影音觀賞</a></li>
+            <li><a href="#">圖片分享 ▼</a>
+                <ul>
+                    <li><a href="pic.html">搖曳露營</a></li>
+                    <li><a href="pic_zz.html">咒術迴戰</a></li>
+                    <li><a href="pic_bochi.html">孤獨搖滾</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="card.html">抽卡系統</a>
+            </li>
+        </ul>
+        <ul class="drop-down-menu" style="padding-left:37%;">
+            <li><a href="index.html">回到首頁</a></li>
+        </ul>
+        <p>
+            <a href="/webdesign">角色介紹</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/course">影音觀賞</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/lesson07">圖片分享</a>
+            <span class="separator">&gt;</span>
+            <a href="/webdesign/lesson07">回到首頁</a>
+        </p>
+    </div>
+    <div>
+        <div class="header-section">
+            <div class="container text-center intro-text">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 id="dynamic-text" style="text-align: center; margin-top: 0;">Welcome to our website</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <hr /> -->
+        <div style="padding: 20px;"></div>
+        <div id="portfolio" style="background-color: #ffe4c4;">
+        <div class="container text-center">
+            <h1 style="text-align: center; margin-top: 0;">Team member</h1>
+                <!-- <p style="text-align: center;">Below are some of my selected works.</p> -->
+                <div class="row" style="display: flex; justify-content: space-between;">
+                    <div class="col-sm-4" style="margin: 0 5px;">
+                        <div class="thumbnail">
+                            <img src="go3.png" width="300" height="300">
+                                <p class="portfolio-subtitle" style="text-align: center;">張簡珈昱</p>
+                                <h3 class="portfolio-title" style="text-align: center;">資工三乙</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin: 0 5px;">
+                        <div class="thumbnail">
+                            <img src="go4.gif" width="300" height="300">
+                                <p class="portfolio-subtitle" style="text-align: center;">丁敬原</p>
+                                <h3 class="portfolio-title" style="text-align: center;">資工三乙</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin: 0 5px;">
+                        <div class="thumbnail">
+                            <img src="go2.png" width="300" height="300">
+                                <p class="portfolio-subtitle" style="text-align: center;">李柏叡</p>
+                                <h3 class="portfolio-title" style="text-align: center;">資工三乙</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" style="margin: 0 5px;">
+                        <div class="thumbnail">
+                            <img src="go.jpeg" width="300" height="300">
+                                <p class="portfolio-subtitle" style="text-align: center;">王翊丞</p>
+                                <h3 class="portfolio-title" style="text-align: center;">資工三甲</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 20px;"></div>
+</body>
+</html>
