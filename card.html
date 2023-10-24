@@ -134,7 +134,7 @@
                 <el-tabs v-model="activeName" stretch>
                   <el-tab-pane label="單抽" name="first">
                     <div class="cardbg">
-                        <img class="Ilu" :src="cardpool[4-starsNow][CardIndex].src">
+                        <img class="Ilu" :src="cardpool[4-starsNow][CardIndex]">
                         <div class="archive"><i class="el-icon-document"></i></div>
                         <p class='starText'><i v-for="i in starsNow" class="el-icon-star-on star"></i></p>
                         <p class='cardName'>Takanashi Hoshino</p>
@@ -143,7 +143,8 @@
                   </el-tab-pane>
                   <el-tab-pane label="十抽" name="second">
                     <div class="cardbg">
-                        <img class="IluInTen" :src="cardpool[4-starsNow][CardIndex].src">
+                        <!--<el-image class="IluInTen" :src="cardpool[4-starsNow][CardIndex]"></el-image>-->
+                        <img class="IluInTen" :src="cardpool[4-starsNow][CardIndex]">
                         <el-container style="margin-left: 695px;padding-top: 270px;">
                             <p id="archive0"><i class="el-icon-document archiveInTen"></i></p>
                             <p id="archive1"><i class="el-icon-document archiveInTen"></i></p>
@@ -181,25 +182,15 @@
             el: '#app',
             data: function() {
                 return {
+                    TenCard:[0,0,0,0,0,0,0,0,0,0],
+                    TenStar:[2,2,2,2,2,2,2,2,2,2],
+                    TenIdx: [0,0,0,0,0,0,0,0,0,0],
                     activeName: 'first',
                     visible: false,
-                    //disabled:false,
-                    card: 100,
-                    TenCard: [100,100,100,100,100,100,100,100,100,100],
-                    tableData: [{
-                        rarity: '四星',
-                        probability: 33,
-                    }, {
-                        rarity: '三星',
-                        probability: 66,
-                    }, {
-                        rarity: '二星',
-                        probability: 33,
-                    }],
-                    cardpool:[
-                        [{src:'Star4/RIN_card.gif'},{src:'Star4/gojo4.gif'},{src:'Star4/bocchi4.gif'}],                 // 4 stars
-                        [{src:'Star3/nadeshiko3.gif'},{src:'Star3/geto_suguru3.gif'},{src:'Star3/ryou3.gif'},{src:'Star3/touji3.gif'}],                 // 3 stars
-                        [{src:'Star2/aoi2.gif'},{src:'Star2/chiaki2.gif'},{src:'Star2/ikuyo2.gif'},{src:'Star2/itatori2.gif'},{src:'Star2/megumi2.gif'},{src:'Star2/nijika2.gif'},{src:'Star2/nobara2.gif'},{src:'Star2/saitou2.gif'}],                 // 2 stars
+                    cardpool:[ // cardpool[0] => 4stars ,cardpool[1] => 3stars ,cardpool[0] => 2stars
+                        ['Star4/RIN_card.gif','Star4/gojo4.gif','Star4/bocchi4.gif'],                 
+                        ['Star3/nadeshiko3.gif','Star3/geto_suguru3.gif','Star3/ryou3.gif','Star3/touji3.gif'],
+                        ['Star2/aoi2.gif','Star2/chiaki2.gif','Star2/ikuyo2.gif','Star2/itatori2.gif','Star2/megumi2.gif','Star2/nijika2.gif','Star2/nobara2.gif','Star2/saitou2.gif'],
                     ],
                     starsNow:2,
                     CardIndex:0,
@@ -211,21 +202,21 @@
                     return Math.floor(Math.random() * 1000 + 1);
                 },
                 judgeRarity(odds){
-                    if (odds >=(1000-this.tableData[0].probability*10))
+                    if (odds >=980)
                         return 4;
-                    else if (odds >=1000-this.tableData[1].probability*10)
+                    else if (odds>=700)
                         return 3;
                     else
                         return 2;
                 },
                 judgeWhichCard(stars){
                     let arrlen =  this.cardpool[4-stars].length;
-                    this.CardIndex = Math.floor(Math.random() * arrlen);
+                    return Math.floor(Math.random() * arrlen);
                 },
                 GetOneCard(){
-                    this.card = this.createRandom();
-                    this.starsNow = this.judgeRarity(this.card);
-                    this.judgeWhichCard(this.starsNow);
+                    let card = this.createRandom();
+                    this.starsNow = this.judgeRarity(card);
+                    this.CardIndex = this.judgeWhichCard(this.starsNow);
                     console.log("Stars: ",this.starsNow,"\n");
                     console.log("CardIndex: ",this.CardIndex,"\n");
                     let tl = gsap.timeline();
@@ -245,12 +236,23 @@
                     //break
                 },
                 GetTenCard(){
-                    //this.disableBtn();
                     let newArr = [];
-                    for(let i=0;i<10;i++)
-                        newArr.push(this.createRandom());
+                    let newTenStar = [];
+                    let newTenIdx = [];
+                    for(let i=0;i<10;i++){
+                        let randNum=this.createRandom();
+                        let randStar=this.judgeRarity(randNum);
+                        let randIdx=this.judgeWhichCard(randStar);
+                        newArr.push(randNum);
+                        newTenStar.push(randStar);
+                        newTenIdx.push(randIdx);
+                    }
                     console.log(newArr);
+                    console.log(newTenStar);
+                    console.log(newTenIdx);
                     this.TenCard = newArr;
+                    this.TenStar = newTenStar;
+                    this.TenIdx = newTenIdx;
 
                     let tl = gsap.timeline();
                     //10 cards enter animation
@@ -261,16 +263,17 @@
                     //show card animation
                     for(let i=0;i<10;i++){
                         //caculate stars and select card 
-                        this.starsNow = this.judgeRarity(this.TenCard[i]);
-                        this.judgeWhichCard(this.starsNow);
-                        console.log("Stars: ",this.starsNow,"\n");
-                        console.log("CardIndex: ",this.CardIndex,"\n");
+                        console.log("Stars: ",this.TenStar[i],"\n");
+                        console.log("CardIndex: ",this.TenIdx[i],"\n");
+                        this.starsNow=this.TenStar[i];
+                        this.CardIndex=this.TenIdx[i];
                         //choose card animation
                         tl.to(`#archive${i}`,{keyframes: [{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" },{ x: "+=2" },{ x: "-=2" }],duration:0.3});
                         if(i&1)
                             tl.to(`#archive${i}`,{y:1000});
                         else
                             tl.to(`#archive${i}`,{y:-1000});
+                        document.write('<img src="images/logo.png">');
                         tl.set('.archiveInTen',{opacity:0});
                         tl.fromTo(".IluInTen",{x:-400 , y:130,opacity:0,scale:0},{opacity:1,scale:1.4,duration:0.5});
                         //tl.fromTo(".starTextInTen",{x:-1000,y:-450,opacity:0},{x:300,y:-450,opacity: 1,duration:0.5});
@@ -283,7 +286,6 @@
                         tl.set('.archiveInTen',{opacity:1});
                         //tl.set(".starTextInTen",{opacity: 0});
                         //tl.set(".cardNameInTen",{opacity: 0});
-                        this.disabled=false;
                     }
                 },
                 //disableBtn(){
@@ -295,5 +297,27 @@
             //    this.disableBtn();
             //}
         });
+//                            _ooOoo_
+//                           o8888888o
+//                           88" . "88
+//                           (| -_- |)
+//                            O\ = /O
+//                        ____/`---'\____
+//                      .   ' \\| |// `.
+//                       / \\||| : |||// \
+//                     / _||||| -:- |||||- \
+//                       | | \\\ - /// | |
+//                     | \_| ''\---/'' | |
+//                      \ .-\__ `-` ___/-. /
+//                   ___`. .' /--.--\ `. . __
+//                ."" '< `.___\_<|>_/___.' >'"".
+//               | | : `- \`.;`\ _ /`;.`/ - ` : | |
+//                 \ \ `-. \_ __\ /__ _/ .-` / /
+//         ======`-.____`-.___\_____/___.-`____.-'======
+//                            `=---='
+//
+//         .............................................
+//                        佛祖保佑 永無BUG
+//
     </script>
 </html>
